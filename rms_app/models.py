@@ -13,34 +13,26 @@ class Table(models.Model):
         Free = "Free"
         Reserved = "Reserved"
         Occupied = "Occupied"
-    numberOfSeats = models.IntegerField(
-        max_length=10,
-        choices=Seat,
-        default=1)
-    status = models.CharField(
-        max_length = 10, 
-        choices=Table_Status,
-        default=Table_Status.Free)  
+    numberOfSeats = models.IntegerField(Seat.choices)
+    status = models.CharField(Table_Status.choices,max_length=255)  
     
 class Menu_Items(models.Model):
     class Menu_Section(models.TextChoices):
         Breakfast = "BreakFast"
         Lunch = "Lunch"
         Dinner = "Dinner"
-    section = models.CharField(
-        max_length=30,
-        choices = Menu_Section)
+    section = models.CharField(Menu_Section.choices,max_length=255)
     name = models.CharField(max_length=65)
-    price = models.FloatField
+    price = models.FloatField()
 
 class Reservations(models.Model):
     class Reservation_Status(models.TextChoices):
         Reserved = "Reserved"
         Canceled = "Canceled"
-    status = models.CharField(max_length=30,choices=Reservation_Status)
+    status = models.CharField(Reservation_Status.choices,max_length=255)
     date = models.DateField()
     customerName = models.CharField(max_length=100)
-    numberOfPeople = models.IntegerField(max_length=10)
+    numberOfPeople = models.IntegerField()
 
 
 
