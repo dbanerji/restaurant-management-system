@@ -23,6 +23,7 @@ class Menu_Items(models.Model):
         Dinner = "Dinner"
     section = models.CharField(Menu_Section.choices,max_length=255)
     name = models.CharField(max_length=65)
+    description = models.CharField(max_length=255)
     price = models.FloatField()
 
 class Reservations(models.Model):
