@@ -7,7 +7,7 @@ def home(request):
     return render(request,"rms_app/home.html")
 
 def about(request):
-    return render(request,"rms_app/about.html")
+    return render(request," rms_app/about.html")
 
 def menu(request):
     menu_items = Menu_Items.objects.all()
@@ -21,9 +21,7 @@ def menu(request):
             lunch_items.append(item)
         else:
             dinner_items.append(item)
-            
-
-    return render(request,"rms_app/menu.html",{"breakfast_items":breakfast_items})
+    return render(request,"rms_app/menu.html",{"breakfast_items":breakfast_items,"lunch_items":lunch_items,"dinner_items":dinner_items})
 
 def reservations(request):
     return render(request,"rms_app/reservations.html")

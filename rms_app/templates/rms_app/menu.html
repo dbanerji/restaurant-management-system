@@ -18,7 +18,8 @@
         }
 
         header {
-            padding: 70px;
+            padding-top: 70px;
+            padding-bottom: 10px;
             color: #fff;
             background-color: #007bff;
             text-align: center;
@@ -28,15 +29,15 @@
             font-weight: 700;
         }
 
-        .menu-item-card {
-            margin-top: 20px;
-        }
-        .menu-item-card{
-            height:100%;
-        }
         .card-img-top{
             height: 100%;
         }
+        .border-info{
+            margin-top: 50px;
+            height:100%;
+            width: 100%;
+        }
+
     </style>
 </head>
 
@@ -69,40 +70,49 @@
     </header>
 
     <!-- Menu Items -->
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static 'rms_app/images/Indian-Breakfast.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card border-info mb-2" style="max-width: 40rem;">
+                    <div class="card-header">BREAKFAST</div>
+                    <img src="{% static 'rms_app/images/Indian-Breakfast.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Breakfast</h5>
-                        <p class="card-text">Description of Item 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$10.99</p>
+                    {% for item in breakfast_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                      {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static 'rms_app/images/photo3jpg.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card border-info mb-2" style="max-width: 40rem;">
+                    <div class="card-header">LUNCH</div>
+                    <img src="{% static 'rms_app/images/photo3jpg.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Lunch</h5>
-                        <p class="card-text">Description of Item 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$12.99</p>
+                    {% for item in lunch_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                      {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static '/rms_app/images/1*ITflw7joc5-xDdKEvdDudg.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card border-info mb-2" style="max-width: 40rem;">
+                    <div class="card-header">DINNER</div>
+                    <img src="{% static '/rms_app/images/1*ITflw7joc5-xDdKEvdDudg.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Dinner</h5>
-                        <p class="card-text">Description of Item 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$8.99</p>
+                    {% for item in dinner_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                    {% endfor %}
                     </div>
                 </div>
             </div>
-            <!-- Add more menu items as needed -->
-        </div>
+        </div>  
     </div>
 
     <!-- Bootstrap JS and dependencies -->
