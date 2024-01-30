@@ -15,27 +15,67 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #495057; /* Dark gray text */
         }
 
         header {
-            padding: 70px;
-            color: #fff;
-            background-color: #007bff;
+            padding-top: 50px;
+            padding-bottom: 20px;
             text-align: center;
         }
 
         h1 {
+            padding-top: 20px;
+            font-weight: 700;
+            color: #fff; /* White text for header */
+        }
+
+        .card {
+            border: 1px solid rgba(0, 123, 255, 0.125); /* Subtle border */
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px;
+            display: flex;
+            min-height: 650px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 1px solid rgba(0, 123, 255, 0.125);
+        }
+
+        .card-img-top {
+            padding-top: 20px;
+            width: 100%;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        .card-body {
+            padding-top: 20px;
+            flex: 1; /* Let the body grow to fill the available space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+
+        .navbar {
+            background-color: #343a40; /* Dark background for navbar */
+        }
+
+        .navbar-brand {
+            color: #fff;
             font-weight: 700;
         }
 
-        .menu-item-card {
-            margin-top: 20px;
-        }
-        .menu-item-card{
-            height:100%;
-        }
-        .card-img-top{
-            height: 100%;
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -43,8 +83,8 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Easy Kitchen</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" >Easy Kitchen</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -69,40 +109,49 @@
     </header>
 
     <!-- Menu Items -->
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static 'rms_app/images/Indian-Breakfast.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card">
+                    <div class="card-header">BREAKFAST</div>
+                    <img src="{% static 'rms_app/images/Indian-Breakfast.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Breakfast</h5>
-                        <p class="card-text">Description of Item 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$10.99</p>
+                    {% for item in breakfast_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                      {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static 'rms_app/images/photo3jpg.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card">
+                    <div class="card-header">LUNCH</div>
+                    <img src="{% static 'rms_app/images/photo3jpg.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Lunch</h5>
-                        <p class="card-text">Description of Item 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$12.99</p>
+                    {% for item in lunch_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                      {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card menu-item-card">
-                    <img src="{% static '/rms_app/images/1*ITflw7joc5-xDdKEvdDudg.jpg' %}" class="card-img-top" alt="Menu Item Image">
+                <div class="card">
+                    <div class="card-header">DINNER</div>
+                    <img src="{% static 'rms_app/images/image2.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
-                        <h5 class="card-title">Dinner</h5>
-                        <p class="card-text">Description of Item 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">$8.99</p>
+                    {% for item in dinner_items %}
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p class="card-text">{{item.description}}</p>
+                      <p class="card-text">${{item.price}}</p>
+                    {% endfor %}
                     </div>
                 </div>
             </div>
-            <!-- Add more menu items as needed -->
-        </div>
+        </div>  
     </div>
 
     <!-- Bootstrap JS and dependencies -->
