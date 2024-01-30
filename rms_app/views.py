@@ -7,7 +7,7 @@ def home(request):
     return render(request,"rms_app/home.html")
 
 def about(request):
-    return render(request," rms_app/about.html")
+    return render(request,"rms_app/about.html")
 
 def menu(request):
     menu_items = Menu_Items.objects.all()
