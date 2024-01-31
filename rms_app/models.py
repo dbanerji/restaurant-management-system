@@ -27,6 +27,13 @@ class Reservations(models.Model):
     customerName = models.CharField(max_length=100)
     numberOfPeople = models.IntegerField()
 
+class TimeSlots(models.Model):
+    time_start = models.TimeField()
+    time_end = models.TimeField()
 
+class OneSeater_Booked(models.Model):
+    available = models.BooleanField()
 
+class TwoSeater_Booked(models.Model):
+    available = models.BooleanField()
 

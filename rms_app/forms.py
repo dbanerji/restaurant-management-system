@@ -7,4 +7,4 @@ class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservations
         fields= ["datetime","customerName","numberOfPeople"]
-        exclude= ["status"]
+        exclude= ["status","table"]

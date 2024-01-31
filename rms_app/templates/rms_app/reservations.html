@@ -89,7 +89,9 @@
             {% csrf_token %}
             <div></div>
             {{ form | crispy}}
-            
+            {%if is_full %}
+            <p>No seats available, please try for a different date</p>
+            {%endif%}
             <button type="submit" class="submit-btn">Submit</button>
         </form>
         <br></br>
