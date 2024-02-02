@@ -1,13 +1,6 @@
-from django.shortcuts import render
-from .models import Menu_Items
-from .forms import ReservationForm
-from .models import Reservations
-from .models import Table
-from .models import OneSeater_Booked
-from .models import TwoSeater_Booked
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.db.models import Count
+from .models import Menu_Items, Reservations, Table, OneSeater_Booked, TwoSeater_Booked
+from .forms import ReservationForm
 
 
 # Create your views here.
@@ -58,10 +51,10 @@ def reserveTable(numberOfPeople):
     one_booked = OneSeater_Booked
     two_booked = TwoSeater_Booked
 
-    if len(free_one_seaters) < 1:
+    if not free_one_seaters.exists():
         one_booked.available = False
 
-    if len(free_two_seaters) <1:
+    if not free_two_seaters.exists():
         two_booked.available = False
 
     if numberOfPeople==1 and one_booked:

@@ -9,20 +9,20 @@ class Table(models.Model):
         Free = "Free"
         Reserved = "Reserved"
     numberOfSeats = models.IntegerField(Seat.choices)
-    status = models.CharField(Table_Status.choices,max_length=255)  
+    status = models.CharField(Table_Status.choices,max_length=20)  
     
 class Menu_Items(models.Model):
     class Menu_Section(models.TextChoices):
         Breakfast = "BreakFast"
         Lunch = "Lunch"
         Dinner = "Dinner"
-    section = models.CharField(Menu_Section.choices,max_length=255)
+    section = models.CharField(Menu_Section.choices,max_length=20)
     name = models.CharField(max_length=65)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     price = models.FloatField()
 
 class Reservations(models.Model):
-    table = models.ForeignKey(Table, null=True, on_delete=models.CASCADE)
+    table = models.ForeignKey(Table, null=True, on_delete=models.CASCADE, related_name='reservations')
     datetime = models.DateTimeField(default=datetime.now())
     customerName = models.CharField(max_length=100)
     numberOfPeople = models.IntegerField()

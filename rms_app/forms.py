@@ -8,3 +8,4 @@ class ReservationForm(forms.ModelForm):
         model = Reservations
         fields= ["datetime","customerName","numberOfPeople"]
         exclude= ["status","table"]
+   
