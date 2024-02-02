@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Menu_Items, Reservations, Table, OneSeater_Booked, TwoSeater_Booked
+from .models import Menu_Items, Reservations, Table, Booking
 from .forms import ReservationForm
 
 
@@ -31,8 +31,8 @@ def reservations(request):
         form = ReservationForm(request.POST or None)
         
         if form.is_valid():
-            reservation =form.save(commit=False)
-            reservation.table = reserveTable(form.cleaned_data.get("numberOfPeople"))
+            reservation = form.save(commit=False)
+            reservation.table = reserveTable(form.cleaned_data.get("number_of_people"))
             if reservation.table is None:
                 is_full =True
             else:
@@ -43,13 +43,13 @@ def reservations(request):
     
     return render(request,"rms_app/reservations.html",{"form":form,"is_full":is_full})
     
-def reserveTable(numberOfPeople):
+def reserveTable(number_of_people):
 
-    free_one_seaters = Table.objects.filter(status="Free",numberOfSeats=1)
-    free_two_seaters = Table.objects.filter(status="Free",numberOfSeats=2)
+    free_one_seaters = Table.objects.filter(table_status="Free",number_of_seats=1)
+    free_two_seaters = Table.objects.filter(table_status="Free",number_of_seats=2)
     
-    one_booked = OneSeater_Booked
-    two_booked = TwoSeater_Booked
+    one_booked = Booking.one_seater_available
+    two_booked = Booking.two_seater_available
 
     if not free_one_seaters.exists():
         one_booked.available = False
@@ -57,13 +57,13 @@ def reserveTable(numberOfPeople):
     if not free_two_seaters.exists():
         two_booked.available = False
 
-    if numberOfPeople==1 and one_booked:
+    if number_of_people==1 and one_booked:
         for table in free_one_seaters:
             table.status = "Reserved"
             table.save()
             return table
-    elif numberOfPeople==2 and two_booked:
-    
+
+    elif number_of_people==2 and two_booked:
         for table in free_two_seaters:
             table.status = "Reserved"
             table.save()
