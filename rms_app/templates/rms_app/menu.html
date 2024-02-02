@@ -94,7 +94,7 @@
                     <a class="nav-link" href="{% url 'rms_app:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Reservations</a>
+                    <a class="nav-link" href="{% url 'rms_app:reservations' %}">Reservations</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -118,9 +118,11 @@
                     <img src="{% static 'rms_app/images/Indian-Breakfast.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
                     {% for item in breakfast_items %}
+                    <hr>
                       <h5 class="card-title">{{item.name}}</h5>
                       <p class="card-text">{{item.description}}</p>
                       <p class="card-text">${{item.price}}</p>
+                      
                       {% endfor %}
                     </div>
                 </div>
@@ -131,9 +133,11 @@
                     <img src="{% static 'rms_app/images/photo3jpg.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
                     {% for item in lunch_items %}
+                    <hr>
                       <h5 class="card-title">{{item.name}}</h5>
                       <p class="card-text">{{item.description}}</p>
                       <p class="card-text">${{item.price}}</p>
+                      
                       {% endfor %}
                     </div>
                 </div>
@@ -144,9 +148,11 @@
                     <img src="{% static 'rms_app/images/image2.jpg' %}" class="card-img-top" alt="Menu Item Image">  
                     <div class="card-body">
                     {% for item in dinner_items %}
+                    <hr>
                       <h5 class="card-title">{{item.name}}</h5>
                       <p class="card-text">{{item.description}}</p>
                       <p class="card-text">${{item.price}}</p>
+                      
                     {% endfor %}
                     </div>
                 </div>
