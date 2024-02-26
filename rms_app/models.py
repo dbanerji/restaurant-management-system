@@ -1,39 +1,30 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
+
 # Create your models here.
-class Table(models.Model):
-    class Seat(models.IntegerChoices):
-        OneSeater = 1
-        TwoSeater = 2
-    class Table_Status(models.TextChoices):
-        Free = "Free"
-        Reserved = "Reserved"
-    numberOfSeats = models.IntegerField(Seat.choices)
-    status = models.CharField(Table_Status.choices,max_length=20)  
-    
+MAX_SEATS = 10
+
 class Menu_Items(models.Model):
     class Menu_Section(models.TextChoices):
-        Breakfast = "BreakFast"
-        Lunch = "Lunch"
-        Dinner = "Dinner"
+        BREAKFAST = "BreakFast"
+        LUNCH = "Lunch"
+        DINNER = "Dinner"
     section = models.CharField(Menu_Section.choices,max_length=20)
     name = models.CharField(max_length=65)
     description = models.TextField()
     price = models.FloatField()
 
-class Reservations(models.Model):
-    table = models.ForeignKey(Table, null=True, on_delete=models.CASCADE, related_name='reservations')
-    datetime = models.DateTimeField(default=datetime.now())
-    customerName = models.CharField(max_length=100)
-    numberOfPeople = models.IntegerField()
+class Table(models.Model):
+    capacity = models.IntegerField()
+    
+class Guest(models.Model):
+    name = models.CharField(max_length=65)
+    phone_number = models.CharField(max_length=10, unique=True)
 
-class TimeSlots(models.Model):
-    time_start = models.TimeField()
-    time_end = models.TimeField()
+class Reservation(models.Model):
+    table = models.ForeignKey(Table, null=True, on_delete=models.CASCADE)
+    guest = models.ForeignKey(Guest,null=True,on_delete=models.CASCADE)
+    datetime = models.DateTimeField(default=timezone.now())
+    number_of_guests = models.IntegerField()
 
-class OneSeater_Booked(models.Model):
-    available = models.BooleanField()
-
-class TwoSeater_Booked(models.Model):
-    available = models.BooleanField()
 
