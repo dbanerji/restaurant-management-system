@@ -76,6 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'restaurant.wsgi.application'
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app']
 
 
 # Database
