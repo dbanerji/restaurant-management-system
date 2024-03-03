@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-apo=uxzc@@4vhyl)(ots%kvgl=w8f76()rr#3=9$8o=xiea@vq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app','.now.sh']
 
 
 # Application definition
@@ -88,10 +88,11 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'restaurant', 
-        'USER': 'postgres',
-        'HOST':'localhost',
-        'PORT':'5432'
+        'NAME': 'verceldb', 
+        'USER': 'default',
+        'HOST':'ep-fancy-thunder-a4a4bmii-pooler.us-east-1.aws.neon.tech',
+        'PASSWORD':'hHk6oZ0UEuwa'
+        
     }
 }
 
@@ -131,9 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, 'restaurant', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build","static")
+STATIC_URL = "static/"
+STATIC_DIR = os.path.join(BASE_DIR, "restaurant", "static")
 STATICFILES_DIRS= [
    STATIC_DIR,
 ]
