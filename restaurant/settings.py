@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-apo=uxzc@@4vhyl)(ots%kvgl=w8f76()rr#3=9$8o=xiea@vq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app','.now.sh']
 
 
 # Application definition
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'restaurant', 
         'USER': 'postgres',
-        'HOST':'localhost',
+        'HOST':'ep-fancy-thunder-a4a4bmii.us-east-1.aws.neon.tech',
         'PORT':'5432'
     }
 }
