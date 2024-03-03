@@ -88,10 +88,11 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'restaurant', 
-        'USER': 'postgres',
-        'HOST':'ep-fancy-thunder-a4a4bmii.us-east-1.aws.neon.tech',
-        'PORT':'5432'
+        'NAME': 'verceldb', 
+        'USER': 'default',
+        'HOST':'ep-fancy-thunder-a4a4bmii-pooler.us-east-1.aws.neon.tech',
+        'PASSWORD':'hHk6oZ0UEuwa'
+        
     }
 }
 
